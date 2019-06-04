@@ -76,7 +76,5 @@ shinyServer(function(input, output) {
                        "Research Experience" = ifelse(1, "Yes", "No"))
   })
   
-  # Sean's Part
-  
   
 })
