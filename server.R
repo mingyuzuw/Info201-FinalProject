@@ -26,7 +26,9 @@ shinyServer(function(input, output) {
   })
   output$question <- renderText({
     paste0("Questions: \n
-           ")
+           What is my admssion prediction?
+           What is the general trend of admission standard?
+           What kind of university should I apply to?")
   })
   output$citation <- renderText({
     paste0("Citation: \n
