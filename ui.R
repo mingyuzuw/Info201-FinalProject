@@ -5,7 +5,22 @@ shinyUI(fluidPage(
     # Overview/Introduction Page
     tabPanel("Overivew", fluid = TRUE,
              fluidRow(
-               textOutput("introduction")
+               textOutput("overview_introduction")
+             ),
+             fluidRow(
+                textOutput("attributes")
+             ),
+             fluidRow(
+               textOutput("audience")
+             ),
+             fluidRow(
+               textOutput("question")
+             ),
+             fluidRow(
+               textOutput("citation")
+             ),
+             fluidRow(
+               textOutput("About_us_info")
              )
     ),
     # James's Part
@@ -21,8 +36,8 @@ shinyUI(fluidPage(
                               choices = list("Very Competitive" = 1, 
                                              "Competitive" = 2,
                                              "Average" = 3,
-                                             "Easy" = 4, 
-                                             "Very Easy" = 5), 
+                                             "Relatively Easy" = 4, 
+                                             "Easy" = 5), 
                               selected = 3),
                  numericInput("TS", label = h3("TOEFL Score"), value = 100),
                  numericInput("GS", label = h3("GRE Score"), value = 300),
@@ -38,9 +53,7 @@ shinyUI(fluidPage(
                  plotOutput("Factors_v_AR")
                )
                )
-             )
-    )
-    ,
+    ),
 
     # Sean's Part
     tabPanel("Report", fluid = TRUE,
@@ -55,4 +68,5 @@ shinyUI(fluidPage(
              )
     )
   )
+)
 )
