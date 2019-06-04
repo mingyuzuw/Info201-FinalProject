@@ -4,7 +4,7 @@ library(ggplot2)
 library(R.utils)
 
 AP_df <- data.table::fread("Admission_Predict_Ver1.1.csv", stringsAsFactors = FALSE)
-univ_level <- c("very competitive", "competitive", "average", "relatively easy", "easy")
+univ_level <- c("easy", "relatively easy", "average", "competitive","very competitive")
 shinyServer(function(input, output) {
   output$overview_introduction <- renderText({
     paste0("This program shows the admission prediction based on different user status. \n")
@@ -13,7 +13,11 @@ shinyServer(function(input, output) {
     paste0("Attributes: \n
             The factors that we use to estimate the admission rate are TOEFL score,
             GRE score, CGPA, and research experience. \n
-            TOEFL score: Satndardized test for international students about English proficiency
+            University Rating: 
+            TOEFL score: Standardized test for English proficiency out of 120
+            GRE Score: Standardized test for graduate admission out of 340
+            CPGA: Undergraduate GPA score scale out of 10
+            Research: Having research experience or not
            ")
   })
   output$audience <- renderText({
@@ -26,14 +30,16 @@ shinyServer(function(input, output) {
   })
   output$citation <- renderText({
     paste0("Citation: \n
-           ")
+           This dataset is obtained from Kaggle.
+           The link is: https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv ")
   })
   output$About_us_info <- renderText({
     paste0("About us: \n
             We are students in University of Washington who are taking INFO 201. 
             This project is created by Group 40 of Info 201 B section, 
            and it is for Info 201 Final Project. \n
-           Authors: Mingyu Zhong, Sean Yang")
+           Authors: Mingyu Zhong, Sean Yang \n
+           Email: mingyuz@uw.edu, ")
   })
   # James's Part 
   get_df <- reactive({
