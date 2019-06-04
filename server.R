@@ -14,10 +14,10 @@ shinyServer(function(input, output) {
             The factors that we use to estimate the admission rate are TOEFL score,
             GRE score, CGPA, and research experience. \n
             University Rating: 
-            TOEFL score: Satndardized test for English proficiency
-            GRE Score: 
-            CPGA: GPA
-            Research Experience: 
+            TOEFL score: Standardized test for English proficiency out of 120
+            GRE Score: Standardized test for graduate admission out of 340
+            CPGA: Undergraduate GPA score scale out of 10
+            Research: Having research experience or not
            ")
   })
   output$audience <- renderText({
@@ -30,7 +30,8 @@ shinyServer(function(input, output) {
   })
   output$citation <- renderText({
     paste0("Citation: \n
-           ")
+           This dataset is obtained from Kaggle.
+           The link is: https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv ")
   })
   output$About_us_info <- renderText({
     paste0("About us: \n
