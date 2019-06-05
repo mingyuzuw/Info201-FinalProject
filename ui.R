@@ -68,7 +68,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                  ),
                  # Chosing the appropriate university to generate prediction
                  radioButtons("univ", 
-                              label = h3("University Rating (Level of difficulty)"),
+                              label = h3("University Rating (Level of Difficulty)"),
                               choices = list("Very Competitive" = 5, 
                                              "Competitive" = 4,
                                              "Average" = 3,
@@ -80,10 +80,10 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                    tags$h3("Input your academic record to generate prediction:")
                  ),
                  # input user status for each category to estimate
-                 numericInput("TS", label = h2("TOEFL Score (0 - 120)"), value = 100),
-                 numericInput("GS", label = h2("GRE Score (0 - 340)"), value = 300),
-                 numericInput("GPA", label = h2("CGPA (0 - 10)"), value = 8),
-                 radioButtons("research", label = h2("Research Experience"),
+                 numericInput("TS", label = h4("TOEFL Score (0 - 120)"), value = 100),
+                 numericInput("GS", label = h4("GRE Score (0 - 340)"), value = 300),
+                 numericInput("GPA", label = h4("CGPA (0 - 10)"), value = 8),
+                 radioButtons("research", label = h4("Research Experience"),
                               choices = list("Yes" = 1, "No" = 0), 
                               selected = 1)
                ),
@@ -107,8 +107,8 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
              # the difficulty of all Graduate schools. The first column also contains all of the four plots that feature each factor set up on their own as the x-axis variables
              # (TOEFL, GRE, CGPA, and Research Experience). The second column contains the report itself that includes detailed insight and data analysis for users to grasp a
              # better understanding of our shiny app. 
-               fluidRow(column(5, radioButtons("reportUniv", 
-                                  label = h3("University Rating (Level of difficulty)"),
+               fluidRow(column(6, radioButtons("reportUniv", 
+                                  label = h3("University Rating (Level of Difficulty)"),
                                   choices = list("Very Competitive" = 5, 
                                                  "Competitive" = 4,
                                                   "Average" = 3,
@@ -116,30 +116,37 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                                                   "Easy" = 1), 
                                   selected = 3),
                                
-                               plotOutput("report_toefl"), hr(),
-                               plotOutput("report_gre"), hr(),
-                               plotOutput("report_cgpa"), hr(),
-                               plotOutput("report_research")), 
+                               # Adjusting the size of our plots and size + alignment of our horizontal spacing to create a more intuitive 
+                               # user interface. 
+                               plotOutput(outputId = "report_toefl", height = "250px", width = "80%"), hr(width = "80%", align = "left"),
+                               plotOutput("report_gre", height = "250px", width = "80%"), hr(width = "80%", align = "left"),
+                               plotOutput("report_cgpa", height = "250px", width = "80%"), hr(width = "80%", align = "left"),
+                               plotOutput("report_research", height = "250px", width = "80%")), 
                         # Start of second column, right side of our 'Report' layout. 
-                          column(7, 
+                          column(6, 
                             tags$div(
                               # Multiple paragraphs that discusses our observations in a Q/A format.
-                              tags$h2("What Factors Affect Ones Chances of Admission Into Graduate School?"),
+                              tags$h3("What are the Additional Graphs for?"),
+                              tags$h4("If you have not noticed already, our team has re-introduced a widget in which alters difficulty of the Graduate school the user is looking to apply for. By 
+                                       utlizing such interaction, the user can then look at each of the four given plots to focus on each individual factor to see what criteria is needed to earn
+                                       themselves the best chance(s) of admission. It should be noted that the higher the difficulty (i.e. average --> competitve), the higher the value of each element."), hr(),
+                              
+                              tags$h3("What Factors Affect Ones Chances of Admission Into Graduate School?"),
                               
                               tags$h4("Simply through our Estimation tab, four different features are filtered within to determine whether an applicant is a qualified candidate for the school
                                      of their desires. The following features are implemented in our formula for the user's admission chances for grad. school: TOEFL score (0-120), GRE score (0-340),
                                      CGPA (0-10), and Research Experience (Yes/No). Such factors are further calculated depending on the prestige of the user's selection (University Rating). Furthermore
                                      it is clear that the higher the user's TOEFL and GRE scores, as well as their CGPA, the higher their chances are of getting into their targeted Graduate school."),
                               
-                              tags$em("For more information regarding the filtered factors, please re-read the introduction paragraph in which can be found in the 'Overview' tab on the NAV bar."), 
-                              hr(),
-                              tags$h1("How Much Significance Does Each Factor Carry Within the Algorithim of Our Program?"),
+                              tags$em("For more information regarding the filtered factors, please re-read the introduction paragraph in which can be found in the 'Overview' tab on the NAV bar."), hr(),
+                              
+                              tags$h3("How Much Significance Does Each Factor Carry Within the Algorithim of Our Program?"),
                               
                               tags$h4("Among the given factors of our application, CGPA is the most significant as it +/- ~13-14% of an indivudal's chances of admission for every grade point. The second most impactful
                                      factor within the admission's algorithm is Research as it +/- 3% of an applicant's chances of admission based on their selection (Yes/No). Following these two factors are the
                                      GRE score (+/- 0.20% for every point) and TOEFL score (+/- 0.03% for every point)."), hr(),
                               
-                              tags$h1("Is Research or GPA More Important for Graduate School, and Should One do Research During the School Year?"),
+                              tags$h3("Is Research or GPA More Important for Graduate School, and Should One do Research During the School Year?"),
                               
                               tags$h4("It depends on what you want to major in for Graduate school as such question can be subjective. Overall, admissions offices want to see a mix of both 
                                      research experience and strong GPA's on your application/transcript because it reveals that you are a qualified student who is prepared to take on any rigorous academic schedules 
@@ -149,7 +156,8 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                                      GPA decreases by one grade point, the admission rate decreases by aprox. 13-14% whereas if the user were to not have any prior research experience, the 
                                      admission rate would only drop roughly 3%.")), hr(),
                             tags$div(
-                              tags$h1("Conclusion"),
+                              tags$h3("Conclusion"),
+                              
                               tags$h4("After examining our plots, our team was able to discern an evident positive association between the applicant's academic performance and 
                                      their estimated admission rate. However, users of this application must be aware that correlation does not always result in causation, for it is very possible that 
                                      there are other factors that may influence the relation, such as the subjectiveness of a graduate school's preferences (i.e. the University of Washington prefers 
