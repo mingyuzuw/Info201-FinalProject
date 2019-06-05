@@ -5,33 +5,50 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
   tabsetPanel(
     # Overview/Introduction Page
     tabPanel("Overview", fluid = TRUE,
-             fluidRow(
-               textOutput("overview_introduction")
+             tags$div(
+               tags$h3("Introduction:"),
+               tags$p("The factors that we use to estimate the admission rate are TOEFL score,
+                      GRE score, CGPA, and research experience.")
              ),
-             fluidRow(
-                textOutput("attributes")
+             tags$div(
+               tags$h3("Attributes:"),
+               tags$p("The factors that we use to estimate the admission rate are TOEFL score,
+                      GRE score, CGPA, and research experience."),
+               tags$p("University Rating: The quality of the university."),
+               tags$p("TOEFL score: Standardized test for English proficiency out of 120."),
+               tags$p("GRE Score: Standardized test for graduate admission out of 340."),
+               tags$p("CPGA: Undergraduate GPA score scale out of 10."),
+               tags$p("Research: Having research experience or not.")
              ),
-             fluidRow(
-               textOutput("audience")
+             tags$div(
+               tags$h3("Audience:"),
+               tags$p("")
              ),
              fluidRow(
                textOutput("question")
              ),
-             fluidRow(
-               textOutput("citation")
-             ),
-             fluidRow(
-               textOutput("About_us_info")
+             tags$div(
+               tags$h3("Citation:"),
+               tags$p("This dataset is obtained from Kaggle."),
+               tags$p("The link is: 
+                      https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv")
+               ),
+             tags$div(
+               tags$h3("Attributes:"),
+               tags$p("We are students in University of Washington who are taking INFO 201.
+                      This project is created by Group 40 of Info 201 B section, 
+                                                                            and it is for Info 201 Final Project."),
+               tags$p("Authors: Mingyu Zhong, Sean Yang"),
+               tags$p("Email: mingyuz@uw.edu, ")
              )
     ),
     # James's Part
     tabPanel("Estimation", fluid = TRUE,
-             fluidRow(
-               textOutput("instruction")
-             ),
              sidebarLayout(
                sidebarPanel(
-                 textOutput("difficulty"),
+                 tags$div(
+                   tags$p("First, select the appropriate university rating to start.")
+                 ),
                  radioButtons("univ", 
                               label = h3("University Rating (Level of difficulty)"),
                               choices = list("Very Competitive" = 5, 

@@ -6,51 +6,10 @@ library(R.utils)
 AP_df <- data.table::fread("Admission_Predict_Ver1.1.csv", stringsAsFactors = FALSE)
 univ_level <- c("easy", "relatively easy", "average", "competitive","very competitive")
 shinyServer(function(input, output) {
-  output$overview_introduction <- renderText({
-    paste0("This program shows the admission prediction based on different user status. \n")
-  })
-  output$attributes <- renderText({
-    paste0("Attributes: \n
-            The factors that we use to estimate the admission rate are TOEFL score,
-            GRE score, CGPA, and research experience. \n
-            University Rating: 
-            TOEFL score: Standardized test for English proficiency out of 120
-            GRE Score: Standardized test for graduate admission out of 340
-            CPGA: Undergraduate GPA score scale out of 10
-            Research: Having research experience or not
-           ")
-  })
-  output$audience <- renderText({
-    paste0("Audience: \n
-           ")
-  })
-  output$question <- renderText({
-    paste0("Questions: \n
-           ")
-  })
-  output$citation <- renderText({
-    paste0("Citation: \n
-           This dataset is obtained from Kaggle.
-           The link is: https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv ")
-  })
-  output$About_us_info <- renderText({
-    paste0("About us: \n
-            We are students in University of Washington who are taking INFO 201. 
-            This project is created by Group 40 of Info 201 B section, 
-           and it is for Info 201 Final Project. \n
-           Authors: Mingyu Zhong, Sean Yang \n
-           Email: mingyuz@uw.edu, ")
-  })
   # James's Part 
   get_df <- reactive({
     univ_df <- AP_df %>% filter(University_Rating == input$univ)
     return(univ_df)
-  })
-  output$instruction <- renderText({
-    paste0()
-  })
-  output$difficulty <- renderText({
-    paste0("First, select the appropriate university rating to start.")
   })
   output$Est_Des <- renderText({
     univ_df <- get_df()
@@ -60,7 +19,6 @@ shinyServer(function(input, output) {
     coe <- as.numeric(coe)
     est_AR <- coe[1] + coe[2] * input$TS+ coe[3] * input$GS + coe[4] * input$GPA + coe[5] * as.numeric(input$research)
     est_AR <- round(est_AR *100, 2)
-    #print(input$univ)
     paste0("The estimated admission rate is for the ", univ_level[as.numeric(input$univ)], " university,
            it is based on the given user input data which is shown in the table below. The plot
            below shows the every data point in the dataset and the generated linear regression line.
@@ -77,10 +35,27 @@ shinyServer(function(input, output) {
     print(current_graph)
   })
   output$User_data <- renderTable({
-    user_input <- list("TOEFL Score" = input$TS, "GRE Score" = input$GS,
+    user_input <- list("TOEFL_Score" = input$TS, "GRE_Score" = input$GS,
                        "CPGA" = input$GPA, 
-                       "Research Experience" = ifelse(1, "Yes", "No"))
+                       "Research_Experience" = ifelse(1, "Yes", "No"))
   })
   
+  # Graph for Sean
+  output$report_toefl <- renderPlot({
+    ggplot(AP_df, aes(x = TOEFL_Score, y = Chance_of_Admit)) + geom_point() +
+      geom_smooth(method = "lm", se = FALSE) + ggtitle("TOEFL Score v Admission Prediction")
+  })
+  output$report_gre <- renderPlot({
+    ggplot(AP_df, aes(x = GRE_Score, y = Chance_of_Admit)) + geom_point() +
+      geom_smooth(method = "lm", se = FALSE) + ggtitle("GRE Score v Admission Prediction")
+  })
+  output$report_cgpa <- renderPlot({
+    ggplot(AP_df, aes(x = CGPA, y = Chance_of_Admit)) + geom_point() +
+      geom_smooth(method = "lm", se = FALSE) + ggtitle("CGPA v Admission Prediction")
+  })
+  output$report_research <- renderPlot({
+    ggplot(AP_df, aes(x = Research, y = Chance_of_Admit)) + geom_point() +
+      geom_smooth(method = "lm", se = FALSE) + ggtitle("Research v Admission Prediction")
+  })
   
 })
