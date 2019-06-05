@@ -2,14 +2,14 @@ library(shiny)
 library(shinythemes)
 
 shinyUI(fluidPage(theme = shinytheme('superhero'),
-  # Having three tab pages which are Overview, Estimation, and Report
+  # Having four tab pages which are Overview, Estimation, Visualization Trends, and Q&A
   tabsetPanel(
     # Overview Page
     tabPanel("Overview", fluid = TRUE,
              # A paragraph for Introduction
              tags$div(
                tags$h3("Introduction:"),
-               tags$p("We want to find the admission prediction of a user given his/her user status.
+               tags$p("We want to find the admission prediction of a user given his/her academic records.
                       The factors that we use to estimate the admission rate are TOEFL score,
                       GRE score, CGPA, and research experience. Also, we want to obtaina a summary about
                       the dataset such as finding the general trend of admission for differnet rating of University.")
@@ -91,8 +91,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                  # allows the user to double check their input with a table 
                  tags$div(
                    tags$h3("Current User Status:")
-                 ),
-                 
+                   ),
                  plotOutput("Factors_v_AR"),hr(),
                  # show the text description of the summary about the admission prediction of the user
                  textOutput("Est_Des")
