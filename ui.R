@@ -92,8 +92,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                  tags$div(
                    tags$h3("Current User Status:")
                  ),
-                 tableOutput("User_data"),hr(),
-                 # plot all the points of the given dataset and generate an estimated line
+                 
                  plotOutput("Factors_v_AR"),hr(),
                  # show the text description of the summary about the admission prediction of the user
                  textOutput("Est_Des")
@@ -101,7 +100,9 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                )
     ),
     
-    # Adding the third and final tabPanel for our user interface. 
+    # Dividing up the 'Visualization tends' page into three columns (widths 2, 5, 5). The first column contains a reintroduced widget from the 'Estimation' page that controls
+    # the difficulty of all Graduate schools. The second column contains two of the four plots that feature some factors set up on their own as the x-axis variables
+    # (TOEFL and GRE). The third column contains the the remaining plots (CGPA and Research Experience).
     tabPanel("Visualization Trends", fluid = TRUE,
              fluidRow(column(2, radioButtons("reportUniv", 
                                              label = h3("University Rating (Level of Difficulty)"),
@@ -120,21 +121,12 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                       column(5,
                              plotOutput("report_cgpa", height = "250px", width = "80%"), hr(width = "80%", align = "left"),
                              plotOutput("report_research", height = "250px", width = "80%")))), 
+    
+            # Our Q&A page that answers a few questions that were drawn up in our project proposal. 
              tabPanel("Q&A", fluid = TRUE,
-             # Dividing up the 'Report' page into two columns (widths 5 and 7). The first column contains a reintroduced widget from the 'Estimation' page that controls
-             # the difficulty of all Graduate schools. The first column also contains all of the four plots that feature each factor set up on their own as the x-axis variables
-             # (TOEFL, GRE, CGPA, and Research Experience). The second column contains the report itself that includes detailed insight and data analysis for users to grasp a
-             # better understanding of our shiny app. 
-           
-                        # Start of second column, right side of our 'Report' layout. 
                         
                             tags$div(
                               # Multiple paragraphs that discusses our observations in a Q/A format.
-                              tags$h3("What are the Additional Graphs for?"),
-                              tags$p("If you have not noticed already, our team has re-introduced a widget in which alters difficulty of the Graduate school the user is looking to apply for. By 
-                                       utlizing such interaction, the user can then look at each of the four given plots to focus on each individual factor to see what criteria is needed to earn
-                                       themselves the best chance(s) of admission. It should be noted that the higher the difficulty (i.e. average --> competitve), the higher the value of each element."), hr(),
-                              
                               tags$h3("What Factors Affect Ones Chances of Admission Into Graduate School?"),
                               
                               tags$p("Simply through our Estimation tab, four different features are filtered within to determine whether an applicant is a qualified candidate for the school
