@@ -24,11 +24,16 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
              ),
              tags$div(
                tags$h3("Audience:"),
-               tags$p("")
+               tags$p("Graduated undergraduate student: Knowing which university has the best
+                      chance of admit with their current status."),
+               
+               tags$p("Undergraduate student: Knowing the weighting of each factor and 
+                      adjusting the devoting of time and effort.")
              ),
              tags$div(
                tags$h3("Questions:"),
-               tags$p("")
+               tags$p("What is the admission prediction of someone with this status?"),
+               tags$p("What the most important factor that affects admission?")
              ),
              tags$div(
                tags$h3("Citation:"),
