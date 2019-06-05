@@ -33,11 +33,10 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
              tags$div(
                tags$h3("Citation:"),
                tags$p("This dataset is obtained from Kaggle."),
-               tags$p("The link is:"),
-               tags$link(src = "https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv")    
+               tags$a(href = "https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv", "Click here to view our dataset!")    
                ),
              tags$div(
-               tags$h3("Attributes:"),
+               tags$h3("About Us:"),
                tags$p("We are students in University of Washington who are taking INFO 201.
                       This project is created by Group 40 of Info 201 B section, 
                                                                             and it is for Info 201 Final Project."),
@@ -84,11 +83,13 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                                                   "Average" = 3,
                                                   "Relatively Easy" = 2, 
                                                   "Easy" = 1), 
-                                                 selected = 3),
-                               plotOutput("report_toefl"),
+                                  selected = 3),
+                               
+                               plotOutput("report_toefl"), 
                                plotOutput("report_gre"),
                                plotOutput("report_cgpa"),
                                plotOutput("report_research")), 
+                        
                           column(7, 
                             tags$div(
                               tags$h3("What Factors Affect Ones Chances of Admission Into Graduate School?"),
@@ -108,16 +109,16 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                                      on your transcript because it reveals that you're a qualified student who can handle the demanding schedule of grad school. Nonetheless, it is advised that you 
                                      keep your GPA up while doing research because in many fields, a top GPA is meaningless without research experience. However, if we were to answer this question from
                                      a general standpoint, GPA would be considered more essential with your major and desired school being pushed aside. As mentioned earlier, if the user's
-                                     GPA decreases by one grade point, the admission rate decreases by aprox. 13-14% (highest increase/decrease rate amongst all factors) whereas if the user were to not 
-                                     have any prior research experience, the admission rate would only drop roughly 3%.")),
+                                     GPA decreases by one grade point, the admission rate decreases by aprox. 13-14% whereas if the user were to not have any prior research experience, the 
+                                     admission rate would only drop roughly 3%.")),
                           
                             tags$div(
                               tags$h3("Conclusion"),
                               tags$p("After examining our plots, our team was able to discern an evident positive association between the applicant's academic performance and 
-                                     their estimated admission rate. However, users of this application must be aware that correlation does not always result in causation, for it is very possible that there are other factors that may
-                                     influence the relation, such as the subjectiveness of a graduate school's preferences (i.e. the University of Washington prefers applicants who have not
-                                     attended the University during their years of undergraduate school). To properly verify the causation of the correlation, additional data will have to be implemented into our program
-                                     in order to truly determine the accuracy of every derived percentage of acceptance.")
+                                     their estimated admission rate. However, users of this application must be aware that correlation does not always result in causation, for it is very possible that 
+                                     there are other factors that may influence the relation, such as the subjectiveness of a graduate school's preferences (i.e. the University of Washington prefers 
+                                     applicants who have not attended the University during their years of undergraduate school). To properly verify the causation of the correlation, additional data 
+                                     will have to be implemented into our program in order to truly determine the accuracy of every derived percentage of acceptance.")
                               )
                               ))
 
