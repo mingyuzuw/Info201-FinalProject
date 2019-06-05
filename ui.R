@@ -2,9 +2,11 @@ library(shiny)
 library(shinythemes)
 
 shinyUI(fluidPage(theme = shinytheme('superhero'),
+  # Having three tab pages which are Overview, Estimation, and Report
   tabsetPanel(
-    # Overview/Introduction Page
+    # Overview Page
     tabPanel("Overview", fluid = TRUE,
+             # A paragraph for Introduction
              tags$div(
                tags$h3("Introduction:"),
                tags$p("We want to find the admission prediction of a user given his/her user status.
@@ -12,6 +14,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                       GRE score, CGPA, and research experience. Also, we want to obtaina a summary about
                       the dataset such as finding the general trend of admission for differnet rating of university")
              ),
+             # A paragraph that explains the factors/variables in the dataset
              tags$div(
                tags$h3("Attributes:"),
                tags$p("The factors that we use to estimate the admission rate are TOEFL score,
@@ -22,6 +25,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                tags$p("CPGA: Undergraduate GPA score scale out of 10."),
                tags$p("Research: Having research experience or not.")
              ),
+             # A paragraph that introduces the group of people who might interest in out program
              tags$div(
                tags$h3("Audience:"),
                tags$p("Graduated undergraduate student: Knowing which university has the best
@@ -30,26 +34,21 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                tags$p("Undergraduate student: Knowing the weighting of each factor and 
                       adjusting the devoting of time and effort.")
              ),
+             # a list of questions that can be answer by our program
              tags$div(
                tags$h3("Questions:"),
                tags$p("What is the admission prediction of someone with this status?"),
                tags$p("What the most important factor that affects admission?")
              ),
+             # A paragraph explain the origin of the dataset
              tags$div(
                tags$h3("Citation:"),
                tags$p("This dataset is obtained from Kaggle."),
-<<<<<<< HEAD
                tags$a(href = "https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv", "Click here to view our dataset!")    
                ),
+             # information and contact of the authors
              tags$div(
                tags$h3("About Us:"),
-=======
-               tags$p("The link is: 
-                      https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv")
-               ),
-             tags$div(
-               tags$h3("About us:"),
->>>>>>> 2b3ed3d4240dfb1a6c179dbe2b5f8114487e6312
                tags$p("We are students in University of Washington who are taking INFO 201.
                       This project is created by Group 40 of Info 201 B section, 
                                                                             and it is for Info 201 Final Project."),
@@ -57,13 +56,16 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                tags$p("Email: mingyuz@uw.edu, ")
              )
     ),
-    # James's Part
+    # Estimation Page which allows the user to predict their admission rate given their input data
     tabPanel("Estimation", fluid = TRUE,
              sidebarLayout(
+               # input widgets that allows the user to input values
                sidebarPanel(
+                 # instruction about how to begin
                  tags$div(
                    tags$p("First, select the appropriate university rating to start.")
                  ),
+                 # Chosing the appropriate university to generate prediction
                  radioButtons("univ", 
                               label = h3("University Rating (Level of difficulty)"),
                               choices = list("Very Competitive" = 5, 
@@ -72,6 +74,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                                              "Relatively Easy" = 2, 
                                              "Easy" = 1), 
                               selected = 3),
+                 # input user status for each category to estimate
                  numericInput("TS", label = h3("TOEFL Score (0 - 120)"), value = 100),
                  numericInput("GS", label = h3("GRE Score (0 - 340)"), value = 300),
                  numericInput("GPA", label = h3("CGPA (0 - 10)"), value = 8),
@@ -80,8 +83,11 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                               selected = 1)
                ),
                mainPanel(
+                 # show the text description of the summary about the admission prediction of the user
                  textOutput("Est_Des"),
+                 # allows the user to double check their input with a table  
                  tableOutput("User_data"),
+                 # plot all the pointsof the given dataset and generate an estimated line
                  plotOutput("Factors_v_AR")
                )
                )
@@ -89,7 +95,6 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
     
     # Sean's Part
     tabPanel("Report", fluid = TRUE,
-<<<<<<< HEAD
                fluidRow(column(5, radioButtons("reportUniv", 
                                   label = h3("University Rating (Level of difficulty)"),
                                   choices = list("Very Competitive" = 5, 
@@ -104,12 +109,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                                plotOutput("report_cgpa"),
                                plotOutput("report_research")), 
                         
-                          column(7, 
-=======
-               mainPanel(fluidRow(
-                 tabPanel("Report", fluid = TRUE,
-                          mainPanel(
->>>>>>> 2b3ed3d4240dfb1a6c179dbe2b5f8114487e6312
+                          column(7,
                             tags$div(
                               tags$h3("What Factors Affect Ones Chances of Admission Into Graduate School?"),
                               
@@ -129,12 +129,6 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                               tags$p("It depends on what you want to major in for grad. school as such question can be subjective. Overall, admissions officers want to view a mixture of both 
                                      on your transcript because it reveals that you're a qualified student who can handle the demanding schedule of grad school. Nonetheless, it is advised that you 
                                      keep your GPA up while doing research because in many fields, a top GPA is meaningless without research experience. However, if we were to answer this question from
-<<<<<<< HEAD
-                                     a general standpoint, GPA would be considered more essential with your major and desired school being pushed aside. As mentioned earlier, if the user's
-                                     GPA decreases by one grade point, the admission rate decreases by aprox. 13-14% whereas if the user were to not have any prior research experience, the 
-                                     admission rate would only drop roughly 3%.")),
-                          
-=======
                                      a general standpoint, GPA would be considered more essential with your major and desired school being pushed aside. As shown in the 'Estimation' tab, when the user's
                                      GPA decreases by one grade point, the admission rate decreases by aprox. ~13-14% (highest increase/decrease rate amongst all factors) whereas if the user were to not 
                                      have any prior research experience, the admission rate would only drop roughly ~3%."),
@@ -148,7 +142,6 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                                      It it possible that there is a higher frequency of participation required to recieve the highest performance grading level, and the reverse is possible as well 
                                      where lower amounts of participation leads to a higher chance of recieving a lower grade.")
                               ),
->>>>>>> 2b3ed3d4240dfb1a6c179dbe2b5f8114487e6312
                             tags$div(
                               tags$h3("Conclusion"),
                               tags$p("After examining our plots, our team was able to discern an evident positive association between the applicant's academic performance and 
@@ -163,5 +156,3 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                )
     )
   )
-)
-)

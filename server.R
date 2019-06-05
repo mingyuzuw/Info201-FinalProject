@@ -3,14 +3,17 @@ library(dplyr)
 library(ggplot2)
 library(R.utils)
 
+# read the dataset into a dataframe
 AP_df <- data.table::fread("Admission_Predict_Ver1.1.csv", stringsAsFactors = FALSE)
 univ_level <- c("easy", "relatively easy", "average", "competitive","very competitive")
+
 shinyServer(function(input, output) {
-  # James's Part 
+  # return the dataframe with the selected university rating
   get_df <- reactive({
     univ_df <- AP_df %>% filter(University_Rating == input$univ)
     return(univ_df)
   })
+  # show the text description of the estimated admission rate
   output$Est_Des <- renderText({
     univ_df <- get_df()
     coe <- lm(Chance_of_Admit ~ TOEFL_Score + GRE_Score + CGPA + Research,
@@ -24,6 +27,7 @@ shinyServer(function(input, output) {
            below shows the every data point in the dataset and the generated linear regression line.
            The estimation for the current user is ", est_AR, "%.")
   })
+  # show a plot showing the relation between four factors and the admission rate for given university rating
   output$Factors_v_AR <- renderPlot({
     univ_df <- get_df()
     tit <- paste0("Admission Prediction for ",univ_level[as.numeric(input$univ)], " university")
@@ -35,35 +39,40 @@ shinyServer(function(input, output) {
       ggtitle(tit) + ylab("Admission Prediction")
     print(current_graph)
   })
+  # show the input of the user in a table
   output$User_data <- renderTable({
     user_input <- list("TOEFL_Score" = input$TS, "GRE_Score" = input$GS,
                        "CPGA" = input$GPA, 
                        "Research_Experience" = ifelse(1, "Yes", "No"))
   })
   
-  # Graph for Sean
+  # return a dataframe of the seleted university rating
   get_uni <- reactive({
     uni <- AP_df %>% filter(University_Rating == input$reportUniv)
     return(uni)
   })
+  # show a plot showing the relationship between TOEFL score and admmission prediction for given university rating
   output$report_toefl <- renderPlot({
     uni <- get_uni()
     g <- ggplot(uni, aes(x = TOEFL_Score, y = Chance_of_Admit)) + geom_point() +
       geom_smooth(method = "lm", se = FALSE) + ggtitle("TOEFL Score v. Admission Prediction")
     print(g)
   })
+  # show a plot showing the relationship between GRE score and admmission prediction for given university rating
   output$report_gre <- renderPlot({
     uni <- get_uni()
     g <- ggplot(uni, aes(x = GRE_Score, y = Chance_of_Admit)) + geom_point() +
       geom_smooth(method = "lm", se = FALSE) + ggtitle("GRE Score v. Admission Prediction")
     print(g)
   })
+  # show a plot showing the relationship between GPA and admmission prediction for given university rating
   output$report_cgpa <- renderPlot({
     uni <- get_uni()
     g <- ggplot(uni, aes(x = CGPA, y = Chance_of_Admit)) + geom_point() +
       geom_smooth(method = "lm", se = FALSE) + ggtitle("CGPA v. Admission Prediction")
     print(g)
   })
+  # show a plot showing the relationship between Research Experience and admmission prediction for given university rating
   output$report_research <- renderPlot({
     uni <- get_uni()
     g <- ggplot(uni, aes(x = Research, y = Chance_of_Admit)) + geom_point() +
