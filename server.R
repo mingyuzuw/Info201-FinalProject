@@ -41,7 +41,6 @@ shinyServer(function(input, output) {
                        "Research_Experience" = ifelse(1, "Yes", "No"))
   })
   
-  # Graph for Sean
   get_uni <- reactive({
     uni <- AP_df %>% filter(University_Rating == input$reportUniv)
     return(uni)
