@@ -64,26 +64,25 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                               tags$h3("What Factors Affect Ones Chances of Admission Into Graduate School?"),
                               
                               tags$p("Simply through our Estimation tab, four different features are filtered within to determine whether an applicant is a qualified candidate for the school
-                                     of their desires.
-                                     
-                                     As we look at each feature, it is apparent that lower instances of these factors, (raising hands, viewing annoucements, joining discussion groups) 
-                                     lead to a higher density of students plotted along the lower tiered performance. 
-                                     For example, selecting the default option of raised hands on the x-axis you can see a clear relationship: students 
-                                     who raised their hands less are populating the performance rating of 1. It is less clear that higher frequencies of these 
-                                     tasks directly translate to higher tiered performance level, but applying extra filters may show more prominent evidence."),
+                                     of their desires. The following features are implemented in our formula for the user's admission chances for grad. school: TOEFL score (0-120), GRE score (0-340),
+                                     CGPA (0-10), and Research Experience (Yes/No). Such factors are further calculated depending on the prestige of the user's selection (University Rating). Furthermore
+                                     it is clear that the higher the user's TOEFL and GRE scores, as well as their CGPA, the higher their chances are of getting into their targeted Graduate school."),
+                                      
+                              tags$em("For more information regarding the filtered factors, please re-read the introduction paragraph in which can be found in the 'Overview' tab on the NAV bar."), 
+                  
+                              tags$h3("Which specific factor carries the most significance in terms of acceptance rate?"),
                               
-                              tags$h3("Does a specific gender tend to be more influenced by the academic behaviors?"),
+                              tags$p(""),
                               
-                              tags$p("For females, there is a more direct trend for the visted resource factor. 
-                                     We see that lower frequencies of doing this task shows more students in the lower performance scoring and higher frequecies of 
-                                     visiting resources shows a higher chance of scoring a performance level of 3. For males, this trend is more prominent while 
-                                     showing the data results from raised hands. We also can see that in both female and males that lower participation in these factors 
-                                     can lead to a higher chance of placement within the lower tiered performance level of 1."),
+                              tags$h3("Is Research or GPA more important for Graduate School, and Should One do Research During the School Year?"),
                               
-                              tags$h3("Students from which nation tend to achieve highest average academic performance?"),
+                              tags$p("It depends on what you want to major in for grad. school as such question can be subjective. Overall, admissions officers want to view a mixture of both 
+                                     on your transcript because it reveals that you're a qualified student who can handle the demanding schedule of grad school. Nonetheless, it is advised that you 
+                                     keep your GPA up while doing research because in many fields, a top GPA is meaningless without research experience. However, if we were to answer this question from
+                                     a general standpoint, GPA would be considered more essential with your major and desired school being pushed aside. As shown in the 'Estimation' tab, when the user's
+                                     GPA decreases by one grade point, the admission rate decreases by aprox. ~13-14% (highest increase/decrease rate amongst all factors) whereas if the user were to not 
+                                     have any prior research experience, the admission rate would only drop roughly ~3%."),
                               
-                              tags$p("As mentioned before, the lowest average performance data we found was from Saudi Arabia (participated 141 time),
-                                     and the highest average academic performance was from the USA (participated 224 times)"),
                               
                               tags$h3("How does having higher participation affect on achieveing better academic performance in each nation?"),
                               
@@ -95,9 +94,11 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                               ),
                             tags$div(
                               tags$h3("Conclusion"),
-                              tags$p("By analyzing the plots , we were able to identify that there exists clear positive relationship between students' academic performance and 
-                                     their participation. However, correlation does not necessarily mean causation, it is possible that there are some other factors that may
-                                     be affecting the relationship. In order to prove the causation of the correlationi, more research will have to be done in future.")
+                              tags$p("After examining our plots, our team was able to discern an evident positive association between the applicant's academic performance and 
+                                     their estimated admission rate. However, users of this application must be aware that correlation does not always result in causation, for it is very possible that there are other factors that may
+                                     influence the relation, such as the subjectiveness of a graduate school's preferences (i.e. the University of Washington prefers applicants who have not
+                                     attended the University during their years of undergraduate school). To properly verify the causation of the correlation, additional data will have to be implemented into our program
+                                     in order to truly determine the accuracy of every derived percentage of acceptance.")
                               )
                               ))
 
