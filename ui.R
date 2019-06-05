@@ -7,8 +7,10 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
     tabPanel("Overview", fluid = TRUE,
              tags$div(
                tags$h3("Introduction:"),
-               tags$p("The factors that we use to estimate the admission rate are TOEFL score,
-                      GRE score, CGPA, and research experience.")
+               tags$p("We want to find the admission prediction of a user given his/her user status.
+                      The factors that we use to estimate the admission rate are TOEFL score,
+                      GRE score, CGPA, and research experience. Also, we want to obtaina a summary about
+                      the dataset such as finding the general trend of admission for differnet rating of university")
              ),
              tags$div(
                tags$h3("Attributes:"),
@@ -24,8 +26,9 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                tags$h3("Audience:"),
                tags$p("")
              ),
-             fluidRow(
-               textOutput("question")
+             tags$div(
+               tags$h3("Questions:"),
+               tags$p("")
              ),
              tags$div(
                tags$h3("Citation:"),
