@@ -12,18 +12,18 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                tags$p("We want to find the admission prediction of a user given his/her user status.
                       The factors that we use to estimate the admission rate are TOEFL score,
                       GRE score, CGPA, and research experience. Also, we want to obtaina a summary about
-                      the dataset such as finding the general trend of admission for differnet rating of university")
+                      the dataset such as finding the general trend of admission for differnet rating of University.")
              ),
              # A paragraph that explains the factors/variables in the dataset
              tags$div(
                tags$h3("Attributes:"),
                tags$p("The factors that we use to estimate the admission rate are TOEFL score,
                       GRE score, CGPA, and research experience."),
-               tags$p("University Rating: The quality of the university."),
-               tags$p("TOEFL score: Standardized test for English proficiency out of 120."),
-               tags$p("GRE Score: Standardized test for graduate admission out of 340."),
-               tags$p("CPGA: Undergraduate GPA score scale out of 10."),
-               tags$p("Research: Having research experience or not.")
+               tags$li("University Rating: The quality of the university."),
+               tags$li("TOEFL score: Standardized test for English proficiency out of 120."),
+               tags$li("GRE Score: Standardized test for graduate admission out of 340."),
+               tags$li("CPGA: Undergraduate GPA score scale out of 10."),
+               tags$li("Research: Having research experience or not.")
              ),
              # A paragraph that introduces the group of people who might interest in out program
              tags$div(
@@ -37,9 +37,10 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
              # a list of questions that can be answer by our program
              tags$div(
                tags$h3("Questions:"),
-               tags$p("What is the admission prediction of someone with this status?"),
-               tags$p("What the most important factor that affects admission?")
-             ),
+               tags$li("What are the chances of admission for users based on their academic records?"),
+               tags$li("What factors affect ones chances of admission into graduate school?"), 
+               tags$li("Is research or GPA more important for Graduate school, and should one do research during the school year?")),
+             
              # A paragraph explain the origin of the dataset
              tags$div(
                tags$h3("Citation:"),
@@ -53,7 +54,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                       This project is created by Group 40 of Info 201 B section, 
                                                                             and it is for Info 201 Final Project."),
                tags$p("Authors: Mingyu Zhong, Sean Yang"),
-               tags$p("Email: mingyuz@uw.edu, ")
+               tags$p("Email: mingyuz@uw.edu, seanhy@uw.edu")
              )
     ),
     # Estimation Page which allows the user to predict their admission rate given their input data
