@@ -1,19 +1,32 @@
-# Info201-FinalProject
+# Info201 - FinalProject - Group_40
 
-## Description (Copy from [Kaggle](https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv))
-Context
-This dataset is created for prediction of Graduate Admissions from an Indian perspective.
+## Introduction:
+We want to find the admission prediction of a user given his/her user status. The factors that we use to estimate the admission rate are TOEFL score, GRE score, CGPA, and research experience. Also, we want to obtaina a summary about the dataset such as finding the general trend of admission for differnet rating of University.
 
-Content
-The dataset contains several parameters which are considered important during the application for Masters Programs. The parameters included are : 1. GRE Scores ( out of 340 ) 2. TOEFL Scores ( out of 120 ) 3. University Rating ( out of 5 ) 4. Statement of Purpose and Letter of Recommendation Strength ( out of 5 ) 5. Undergraduate GPA ( out of 10 ) 6. Research Experience ( either 0 or 1 ) 7. Chance of Admit ( ranging from 0 to 1 )
+## Attributes:
+The factors that we use to estimate the admission rate are TOEFL score, GRE score, CGPA, and research experience.
 
-Acknowledgements
-This dataset is inspired by the UCLA Graduate Dataset. The test scores and GPA are in the older format. The dataset is owned by Mohan S Acharya.
+* University Rating: The quality of the university.
+* TOEFL score: Standardized test for English proficiency out of 120.
+* GRE Score: Standardized test for graduate admission out of 340.
+* CPGA: Undergraduate GPA score scale out of 10.
+* Research: Having research experience or not.
 
-Inspiration
-This dataset was built with the purpose of helping students in shortlisting universities with their profiles. The predicted output gives them a fair idea about their chances for a particular university.
+## Audience:
+* Graduated undergraduate student: Knowing which university has the best chance of admit with their current status.
+* Undergraduate student: Knowing the weighting of each factor and adjusting the devoting of time and effort.
 
-Citation
-Please cite the following if you are interested in using the dataset : Mohan S Acharya, Asfia Armaan, Aneeta S Antony : A Comparison of Regression Models for Prediction of Graduate Admissions, IEEE International Conference on Computational Intelligence in Data Science 2019
+# Questions:
+* What are the chances of admission for users based on their academic records?
+* What factors affect ones chances of admission into graduate school?
+* Is research or GPA more important for Graduate school, and should one do research during the school year?
 
-I would like to thank all of you for contributing to this dataset through discussions and questions. I am in awe of the number of kernels built on this dataset. Some results and visualisations are fantastic and makes me a proud owner of the dataset. Keep em' coming! Thank You.
+# Citation:
+This dataset is obtained from [Kaggle](https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv).
+
+# About Us:
+We are students in University of Washington who are taking INFO 201. This project is created by Group 40 of Info 201 B section, and it is for Info 201 Final Project.
+
+Authors: Mingyu Zhong, Sean Yang
+
+Email: mingyuz@uw.edu, seanhy@uw.edu
