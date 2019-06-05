@@ -38,8 +38,8 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
              tags$div(
                tags$h3("Citation:"),
                tags$p("This dataset is obtained from Kaggle."),
-               tags$p("The link is: 
-                      https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv")
+               tags$p("The link is:"),
+               tags$link(src = "https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv")    
                ),
              tags$div(
                tags$h3("Attributes:"),
@@ -47,7 +47,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                       This project is created by Group 40 of Info 201 B section, 
                                                                             and it is for Info 201 Final Project."),
                tags$p("Authors: Mingyu Zhong, Sean Yang"),
-               tags$p("Email: mingyuz@uw.edu, ")
+               tags$p("Email: mingyuz@uw.edu, seanhy@uw.edu")
              )
     ),
     # James's Part
@@ -82,41 +82,40 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
     
     # Sean's Part
     tabPanel("Report", fluid = TRUE,
-               mainPanel(fluidRow(
-                 tabPanel("Report", fluid = TRUE,
-                          mainPanel(
+               fluidRow(column(5, radioButtons("reportUniv", 
+                                  label = h3("University Rating (Level of difficulty)"),
+                                  choices = list("Very Competitive" = 5, 
+                                                 "Competitive" = 4,
+                                                  "Average" = 3,
+                                                  "Relatively Easy" = 2, 
+                                                  "Easy" = 1), 
+                                                 selected = 3),
+                               plotOutput("report_toefl"),
+                               plotOutput("report_gre"),
+                               plotOutput("report_cgpa"),
+                               plotOutput("report_research")), 
+                          column(7, 
                             tags$div(
                               tags$h3("What Factors Affect Ones Chances of Admission Into Graduate School?"),
-                              
                               tags$p("Simply through our Estimation tab, four different features are filtered within to determine whether an applicant is a qualified candidate for the school
                                      of their desires. The following features are implemented in our formula for the user's admission chances for grad. school: TOEFL score (0-120), GRE score (0-340),
                                      CGPA (0-10), and Research Experience (Yes/No). Such factors are further calculated depending on the prestige of the user's selection (University Rating). Furthermore
                                      it is clear that the higher the user's TOEFL and GRE scores, as well as their CGPA, the higher their chances are of getting into their targeted Graduate school."),
-                                      
                               tags$em("For more information regarding the filtered factors, please re-read the introduction paragraph in which can be found in the 'Overview' tab on the NAV bar."), 
                   
-                              tags$h3("Which specific factor carries the most significance in terms of acceptance rate?"),
                               
-                              tags$p(""),
+                              tags$h3("How much significance does each factor specifically carry in the application's algorithim?"),
+                              tags$p("The most significant factor is CGPA which +/- ~13-14% of the user's admission rate for every grade point. Second on the list is Research as it +/- ~3% of the admission
+                                     chances based on the user's input. Following these two is GRE score (+/- 0.2% for every point) and then TOEFL score (+/- 0.03% for every point)"),
                               
                               tags$h3("Is Research or GPA more important for Graduate School, and Should One do Research During the School Year?"),
-                              
                               tags$p("It depends on what you want to major in for grad. school as such question can be subjective. Overall, admissions officers want to view a mixture of both 
                                      on your transcript because it reveals that you're a qualified student who can handle the demanding schedule of grad school. Nonetheless, it is advised that you 
                                      keep your GPA up while doing research because in many fields, a top GPA is meaningless without research experience. However, if we were to answer this question from
-                                     a general standpoint, GPA would be considered more essential with your major and desired school being pushed aside. As shown in the 'Estimation' tab, when the user's
-                                     GPA decreases by one grade point, the admission rate decreases by aprox. ~13-14% (highest increase/decrease rate amongst all factors) whereas if the user were to not 
-                                     have any prior research experience, the admission rate would only drop roughly ~3%."),
-                              
-                              
-                              tags$h3("How does having higher participation affect on achieveing better academic performance in each nation?"),
-                              
-                              tags$p("To recieve a low performance grading (scoring of 1) participation levels range from 29-141 times participated.
-                                     To recieve a mid-tier perfomance grading (scoring of 2) participation levels range from 126-266 times participated.
-                                     To recieve a high-tier performance grading (scoring of 3) participation levels range from 223-330
-                                     It it possible that there is a higher frequency of participation required to recieve the highest performance grading level, and the reverse is possible as well 
-                                     where lower amounts of participation leads to a higher chance of recieving a lower grade.")
-                              ),
+                                     a general standpoint, GPA would be considered more essential with your major and desired school being pushed aside. As mentioned earlier, if the user's
+                                     GPA decreases by one grade point, the admission rate decreases by aprox. 13-14% (highest increase/decrease rate amongst all factors) whereas if the user were to not 
+                                     have any prior research experience, the admission rate would only drop roughly 3%.")),
+                          
                             tags$div(
                               tags$h3("Conclusion"),
                               tags$p("After examining our plots, our team was able to discern an evident positive association between the applicant's academic performance and 
@@ -131,5 +130,5 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                )
     )
   )
-)
-)
+
+

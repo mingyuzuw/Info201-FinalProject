@@ -42,7 +42,8 @@ shinyServer(function(input, output) {
   
   # Graph for Sean
   get_uni <- reactive({
-    uni <- AP_df %>% filter(University_Rating == input$)
+    uni <- AP_df %>% filter(University_Rating == input$reportUniv)
+    return(uni)
   })
   output$report_toefl <- renderPlot({
     uni <- get_uni()
