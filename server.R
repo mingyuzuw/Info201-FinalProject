@@ -26,12 +26,13 @@ shinyServer(function(input, output) {
   })
   output$Factors_v_AR <- renderPlot({
     univ_df <- get_df()
+    tit <- paste0("Admission Prediction for ",univ_level[as.numeric(input$univ)], " university")
     current_graph <- ggplot(univ_df,aes(x = TOEFL_Score + GRE_Score + 
                                                CGPA + Research,
                                              y = Chance_of_Admit)) + 
       geom_point() + 
       geom_smooth(method = "lm", se = FALSE) + 
-      ggtitle(univ_level[as.numeric(input$univ)])
+      ggtitle(tit) + ylab("Admission Prediction")
     print(current_graph)
   })
   output$User_data <- renderTable({
@@ -48,25 +49,25 @@ shinyServer(function(input, output) {
   output$report_toefl <- renderPlot({
     uni <- get_uni()
     g <- ggplot(uni, aes(x = TOEFL_Score, y = Chance_of_Admit)) + geom_point() +
-      geom_smooth(method = "lm", se = FALSE) + ggtitle("TOEFL Score v Admission Prediction")
+      geom_smooth(method = "lm", se = FALSE) + ggtitle("TOEFL Score v. Admission Prediction")
     print(g)
   })
   output$report_gre <- renderPlot({
     uni <- get_uni()
     g <- ggplot(uni, aes(x = GRE_Score, y = Chance_of_Admit)) + geom_point() +
-      geom_smooth(method = "lm", se = FALSE) + ggtitle("GRE Score v Admission Prediction")
+      geom_smooth(method = "lm", se = FALSE) + ggtitle("GRE Score v. Admission Prediction")
     print(g)
   })
   output$report_cgpa <- renderPlot({
     uni <- get_uni()
     g <- ggplot(uni, aes(x = CGPA, y = Chance_of_Admit)) + geom_point() +
-      geom_smooth(method = "lm", se = FALSE) + ggtitle("CGPA v Admission Prediction")
+      geom_smooth(method = "lm", se = FALSE) + ggtitle("CGPA v. Admission Prediction")
     print(g)
   })
   output$report_research <- renderPlot({
     uni <- get_uni()
     g <- ggplot(uni, aes(x = Research, y = Chance_of_Admit)) + geom_point() +
-      geom_smooth(method = "lm", se = FALSE) + ggtitle("Research v Admission Prediction")
+      geom_smooth(method = "lm", se = FALSE) + ggtitle("Research v. Admission Prediction")
     print(g)
   })
   
