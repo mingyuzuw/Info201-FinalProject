@@ -64,7 +64,7 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                sidebarPanel(
                  # instruction about how to begin
                  tags$div(
-                   tags$p("First, select the appropriate university rating to start.")
+                   tags$h2("First, select the appropriate university rating to start.")
                  ),
                  # Chosing the appropriate university to generate prediction
                  radioButtons("univ", 
@@ -75,6 +75,10 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                                              "Relatively Easy" = 2, 
                                              "Easy" = 1), 
                               selected = 3),
+                 # Instruction to input user data
+                 tags$div(
+                   tags$h2("Then, input your academic record to generate prediction")
+                 ),
                  # input user status for each category to estimate
                  numericInput("TS", label = h3("TOEFL Score (0 - 120)"), value = 100),
                  numericInput("GS", label = h3("GRE Score (0 - 340)"), value = 300),
@@ -84,12 +88,15 @@ shinyUI(fluidPage(theme = shinytheme('superhero'),
                               selected = 1)
                ),
                mainPanel(
+                 # allows the user to double check their input with a table 
+                 tags$div(
+                   tags$h3("Current User Status:")
+                 ),
+                 tableOutput("User_data"),hr(),
+                 # plot all the points of the given dataset and generate an estimated line
+                 plotOutput("Factors_v_AR"),hr(),
                  # show the text description of the summary about the admission prediction of the user
-                 textOutput("Est_Des"),
-                 # allows the user to double check their input with a table  
-                 tableOutput("User_data"),
-                 # plot all the pointsof the given dataset and generate an estimated line
-                 plotOutput("Factors_v_AR")
+                 textOutput("Est_Des")
                )
                )
     ),
