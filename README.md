@@ -16,15 +16,15 @@ The factors that we use to estimate the admission rate are TOEFL score, GRE scor
 * Graduated undergraduate student: Knowing which university has the best chance of admit with their current status.
 * Undergraduate student: Knowing the weighting of each factor and adjusting the devoting of time and effort.
 
-# Questions:
+## Questions:
 * What are the chances of admission for users based on their academic records?
 * What factors affect ones chances of admission into graduate school?
 * Is research or GPA more important for Graduate school, and should one do research during the school year?
 
-# Citation:
+## Citation:
 This dataset is obtained from [Kaggle](https://www.kaggle.com/mohansacharya/graduate-admissions#Admission_Predict_Ver1.1.csv).
 
-# About Us:
+## About Us:
 We are students in University of Washington who are taking INFO 201. This project is created by Group 40 of Info 201 B section, and it is for Info 201 Final Project.
 
 Authors: Mingyu Zhong, Sean Yang
