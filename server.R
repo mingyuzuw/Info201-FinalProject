@@ -41,21 +41,32 @@ shinyServer(function(input, output) {
   })
   
   # Graph for Sean
+  get_uni <- reactive({
+    uni <- AP_df %>% filter(University_Rating == input$)
+  })
   output$report_toefl <- renderPlot({
-    ggplot(AP_df, aes(x = TOEFL_Score, y = Chance_of_Admit)) + geom_point() +
+    uni <- get_uni()
+    g <- ggplot(uni, aes(x = TOEFL_Score, y = Chance_of_Admit)) + geom_point() +
       geom_smooth(method = "lm", se = FALSE) + ggtitle("TOEFL Score v Admission Prediction")
+    print(g)
   })
   output$report_gre <- renderPlot({
-    ggplot(AP_df, aes(x = GRE_Score, y = Chance_of_Admit)) + geom_point() +
+    uni <- get_uni()
+    g <- ggplot(uni, aes(x = GRE_Score, y = Chance_of_Admit)) + geom_point() +
       geom_smooth(method = "lm", se = FALSE) + ggtitle("GRE Score v Admission Prediction")
+    print(g)
   })
   output$report_cgpa <- renderPlot({
-    ggplot(AP_df, aes(x = CGPA, y = Chance_of_Admit)) + geom_point() +
+    uni <- get_uni()
+    g <- ggplot(uni, aes(x = CGPA, y = Chance_of_Admit)) + geom_point() +
       geom_smooth(method = "lm", se = FALSE) + ggtitle("CGPA v Admission Prediction")
+    print(g)
   })
   output$report_research <- renderPlot({
-    ggplot(AP_df, aes(x = Research, y = Chance_of_Admit)) + geom_point() +
+    uni <- get_uni()
+    g <- ggplot(uni, aes(x = Research, y = Chance_of_Admit)) + geom_point() +
       geom_smooth(method = "lm", se = FALSE) + ggtitle("Research v Admission Prediction")
+    print(g)
   })
   
 })
