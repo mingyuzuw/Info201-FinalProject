@@ -75,8 +75,9 @@ shinyServer(function(input, output) {
   # show a plot showing the relationship between Research Experience and admmission prediction for given university rating
   output$report_research <- renderPlot({
     uni <- get_uni()
-    g <- ggplot(uni, aes(x = Research, y = Chance_of_Admit)) + geom_point() +
-      geom_smooth(method = "lm", se = FALSE) + ggtitle("Research v. Admission Prediction")
+    uni <- uni %>% mutate(Research_Experience = ifelse(Research == "1", "Yes", "No"))
+    g <- ggplot(uni, aes(x = Research_Experience, y = Chance_of_Admit)) + geom_col() +
+         ggtitle("Research v. Admission Prediction")
     print(g)
   })
   
